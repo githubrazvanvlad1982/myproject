@@ -1,5 +1,15 @@
 #!/bin/bash
-clear
-docker run -it \
--v "$(pwd)"/:/var/www/html \
-php:7.2.1-fpm-stretch /bin/bash
+
+docker run  \
+    -v "$(pwd)"/../src:/var/www/html \
+    -p 9000:9000 \
+    -d \
+    myproject_php-fpm; \
+
+docker run \
+    -v "$(pwd)"/../src:/var/www/html \
+    -p 8080:80 \
+    -d \
+    myproject_nginx;
+
+
